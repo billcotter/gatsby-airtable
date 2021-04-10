@@ -4,38 +4,45 @@ import Title from "./Title"
 import styled from "styled-components"
 import Image from "gatsby-image"
 import SearchButtons from "./SearchButtons"
-const Projects = ({projects:data,title, page}) => {
-  const [projects,setProjects] = React.useState(data);
-  // more logic
-  return (
-  <Wrapper className="section">
-    <Title title={title || "projects"} />
-    {/* search buttons here */}
-    <div className="section-center">
-      {projects.map((item)=>{
-        const{id} = item;
-        const {name, type} = item.data
-        const fluid = item.data.image.localFiles[0].
-        childImageSharp.fluid
-        return (
-          <article key={id}>
-            <div className="container">
-              <Image fluid={fluid} className="img" />
-              <div className="info">
+const Projects = ({ projects: data, title, page }) => {
+  const [projects, setProjects] = React.useState(data)
 
-                <p>- {type} -</p>
-                <h3>{name}</h3>
+  const setBackToAll = () => {
+    setProjects(data)
+  }
+  return (
+    <Wrapper className="section">
+      <Title title={title || "projects"} />
+      {page && (
+        <SearchButtons
+          projects={data}
+          setProjects={setProjects}
+          setBackToAll={setBackToAll}
+        />
+      )}
+      <div className="section-center">
+        {projects.map(item => {
+          const { id } = item
+          const { name, type } = item.data
+          const fluid = item.data.image.localFiles[0].childImageSharp.fluid
+          return (
+            <article key={id}>
+              <div className="container">
+                <Image fluid={fluid} className="img" />
+                <div className="info">
+                  <p>- {type} -</p>
+                  <h3>{name}</h3>
+                </div>
               </div>
-            </div>
-          </article>
-        )
-      })}
-    </div>
-    {!page && (
-    <Link to="/projects" className="btn">
-      all projects
-    </Link>
-    )}
+            </article>
+          )
+        })}
+      </div>
+      {!page && (
+        <Link to="/projects" className="btn">
+          all projects
+        </Link>
+      )}
     </Wrapper>
   )
 }

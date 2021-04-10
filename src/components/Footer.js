@@ -5,7 +5,7 @@ const Footer = () => {
     <Wrapper>
       <p>
         &copy; {new Date().getFullYear()} Bill J. Cotter. All rights reserved.
-        Built with Gatsby
+        Built with Gatsby/React.js
       </p>
     </Wrapper>
   )
