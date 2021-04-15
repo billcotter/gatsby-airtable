@@ -7,6 +7,7 @@ export default [
     url: `/products/payments`,
     icon: <FaCreditCard className="icon" />,
   },
+  
   {
     page: "products",
     label: "terminal",
@@ -56,3 +57,4 @@ export default [
     icon: <FaCcStripe className="icon" />,
   },
 ]
+
